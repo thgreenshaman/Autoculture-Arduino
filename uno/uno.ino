@@ -169,7 +169,7 @@ void loop() {
       //Serial.println("Lights are off");
     }
   }
-  else if (now.hour() >= 17 && now.hour() < 11) {
+  else if (now.hour() >= 17 or now.hour() < 11) {
     if (lights == false) {
       lights = true;
       digitalWrite(lightRelay, HIGH);
