@@ -23,6 +23,7 @@
 #include <ESP8266WiFi.h>
 #include <ESPAsyncTCP.h>
 #include <ESPAsyncWebServer.h>
+#include <ESP8266mDNS.h>
 #include <FS.h>
 #include "config.h"
 
@@ -171,7 +172,10 @@ void setup() {
 
   server.begin();
 
-  Serial.print("1:");
+  if (!MDNS.begin("autogrow")) {             // Start the mDNS responder for esp8266.local
+    Serial.println("Error setting up MDNS responder!");
+  }
+
 
 }
 
