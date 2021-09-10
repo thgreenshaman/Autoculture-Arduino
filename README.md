@@ -8,6 +8,10 @@ The Autogrow-Arduino is designed to control lighting, fans, heatpad and peltier 
 Most variables are self explanitory although I will put up some better instructions in the near future.
 TODO::The timer is set to turn lights off at 1100 hours and turn on again at 1700 hours. This version of Autogrow will not be expecting any major changes although I will be adding some variables some stage to make timer control easier.
  
+ //TODO// 
+ 
+  * Add arduino time to server display to check if RTC is correct.
+ 
 # Parts I used:
 
  * <a href="https://www.jaycar.co.nz/uno-with-wi-fi/p/XC4411">Duinotech Uno with Wifi (XC4411)</a>
