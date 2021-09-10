@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 //                                                                           //
-//    AutoGrow-Arduino v0.01                                                     //
+//    AutoGrow-Arduino v0.01                                                 //
 //                                                                           //
 //    Copyright (C) 2021 Damian Mair(thgreenshaman) ->/dmTech                //
 //                                                                           //
@@ -57,7 +57,7 @@ void setup() {
   pinMode(lightRelay, OUTPUT);
   pinMode(heatpadRelay, OUTPUT);
   pinMode(peltierRelay, OUTPUT);
-
+  
   if (! rtc.begin()) {
     Serial.println("RTC not connected or malfunctioning!!!");
     Serial.flush();
@@ -69,7 +69,6 @@ void setup() {
     Serial.println("Setting time.");
     rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
   }
-
   now = rtc.now();
 
 }
@@ -162,15 +161,15 @@ void loop() {
     Serial.println(F("Failed to read from DHT sensor!"));
 
   }
-
-  if (now.hour() >= 0 && now.hour() < 6) {
+  //Serial.println("\n" + String(now.hour()) + ":" + String(now.minute()) + "\n");
+  if (now.hour() >= 11 && now.hour() < 17) {
     if (lights == true) {
       lights = false;
       digitalWrite(lightRelay, LOW);
       //Serial.println("Lights are off");
     }
   }
-  else if (now.hour() >= 6 && now.hour() <= 23) {
+  else if (now.hour() >= 17 && now.hour() < 11) {
     if (lights == false) {
       lights = true;
       digitalWrite(lightRelay, HIGH);
