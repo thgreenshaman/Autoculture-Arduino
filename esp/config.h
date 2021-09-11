@@ -1,2 +1,2 @@
-#define WIFI_SSID "CanO'Beans"
-#define WIFI_PASSWORD "haylieisgay"
+#define WIFI_SSID "ENTER SSID HERE"
+#define WIFI_PASSWORD "ENTER PASSWORD HERE"
