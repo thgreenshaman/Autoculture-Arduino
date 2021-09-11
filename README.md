@@ -6,7 +6,7 @@ Autogrow for arduino is a basic grow environment controller that is designed for
 The Autogrow-Arduino is designed to control lighting, fans, heatpad and peltier unit with basic settings in-code. All settings must be adjusted using the in-code variables before flashing to the boards.
  
 Most variables are self explanitory although I will put up some better instructions in the near future.
-TODO::The timer is set to turn lights off at 1100 hours and turn on again at 1700 hours. This version of Autogrow will not be expecting any major changes although I will be adding some variables some stage to make timer control easier.
+TODO::The timer is set to turn lights off at 1100 hours and turn on again at 1700 hours.
  
  
 # Parts I used:
