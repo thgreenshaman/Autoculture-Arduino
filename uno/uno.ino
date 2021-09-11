@@ -43,6 +43,10 @@ bool lights;
 float t;
 float h;
 
+String curMin;
+String curHour;
+String curTime;
+
 DHT dht(DHTPIN, DHTTYPE);
 
 RTC_DS1307 rtc;
@@ -63,7 +67,7 @@ void setup() {
     Serial.flush();
     abort();
   }
-
+  rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
   if (! rtc.isrunning()) {
     Serial.println("RTC is not running.");
     Serial.println("Setting time.");
@@ -162,35 +166,37 @@ void loop() {
 
   }
   //Serial.println("\n" + String(now.hour()) + ":" + String(now.minute()) + "\n");
-  if (now.hour() >= 11 && now.hour() < 17) {
-    if (lights == true) {
+  if (int(now.hour()) >= 11 and int(now.hour()) < 17 ) {
       lights = false;
       digitalWrite(lightRelay, LOW);
-      //Serial.println("Lights are off");
-    }
   }
-  else if (now.hour() >= 17 or now.hour() < 11) {
-    if (lights == false) {
+  else if (int(now.hour()) < 11 or int(now.hour()) >= 17 ){
       lights = true;
       digitalWrite(lightRelay, HIGH);
-      //Serial.println("Lights are on");
-    }
   }
 
   safetyCheck();
   tempCheck();
-  /*if (lights == true){
-    Serial.println("\nLights are\tON");
-    }else if (lights == false){
-    Serial.println("\nLights are\tOFF");
-    }*/
+  if (String(now.minute()).length() == 2){
+    curMin = String(now.minute());
+  } else if(String(now.minute()).length() == 1){
+    curMin = "0" + String(now.minute());
+  }
+  if (String(now.hour()).length() == 2){
+    curHour = String(now.hour());
+  } else if(String(now.hour()).length() ==1){
+    curHour = "0" + String(now.hour());
+  }
   Serial.print(String(digitalRead(lightRelay))
                + ":" + String(digitalRead(fanRelay))
                + ":" + String(digitalRead(heatpadRelay))
                + ":" + String(digitalRead(peltierRelay))
                + ":" + String(t)
                + ":" + String(h)
+               + curHour + ":" + curMin
                + ";");
+
+
   Serial.flush();
   delay(2999);
 

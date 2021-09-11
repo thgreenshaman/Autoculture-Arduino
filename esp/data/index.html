@@ -36,6 +36,7 @@
       <img src='logo.png' alt='AUTOGROW' height="85em" />
     </div>
 <div align="center">
+  <p id="unotime">%UNOTIME%</p>
       <table>
         <tr>
           <th style="color:#629749">__________________</th>
@@ -138,6 +139,17 @@
       }
     };
     xhttp.open("GET", "/peltierstate", true);
+    xhttp.send();
+  }, 5000 ) ;
+
+  setInterval(function ( ) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("unotime").innerHTML = this.responseText;
+      }
+    };
+    xhttp.open("GET", "/unotime", true);
     xhttp.send();
   }, 5000 ) ;
   </script>

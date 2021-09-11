@@ -41,6 +41,7 @@ String heatpadState;
 String fanState;
 String peltierState;
 String unoData;
+String unoTime;
 
 String processor(const String& var) {
   Serial.println(var);
@@ -56,6 +57,8 @@ String processor(const String& var) {
     return heatpadState;
   } else if (var == "FANSTATE") {
     return fanState;
+  } else if (var == "UNOTIME") {
+    return unoTime;
   }
 }
 
@@ -63,7 +66,7 @@ void readUno() {
   unoData = Serial.readStringUntil(';');
   Serial.println(unoData);
   Serial.println(String(unoData.length()));
-  if (unoData.length() == 19){
+  if (unoData.length() == 24){
     
     if (unoData.substring(0,1) == "0"){
       lightState = "OFF";
@@ -88,14 +91,9 @@ void readUno() {
       peltierState = "ON";
     }
     temp = unoData.substring(8,13);
-    hum = unoData.substring(14);
+    hum = unoData.substring(14,19);
+    unoTime = unoData.substring(19);
   }
-    /*lightState = Serial.readStringUntil(':');
-    fanState = Serial.readStringUntil(':');
-    heatpadState = Serial.readStringUntil(':');
-    peltierState = Serial.readStringUntil(':');
-    temp = Serial.readStringUntil(':');
-    hum = Serial.readStringUntil(':');*/
     
     Serial.print("\nTemp\t");
     Serial.println(temp);
@@ -109,7 +107,8 @@ void readUno() {
     Serial.println(heatpadState);
     Serial.print("Peltier\t");
     Serial.println(peltierState);
-    Serial.println(":");
+    Serial.print("Time\t");
+    Serial.println(unoTime);
 
     delay(3000);
 
@@ -168,6 +167,10 @@ void setup() {
 
   server.on("/peltierstate", HTTP_GET, [](AsyncWebServerRequest * request) {
     request->send_P(200, "text/plain", peltierState.c_str());
+  });
+
+  server.on("/unotime", HTTP_GET, [](AsyncWebServerRequest * request) {
+    request->send_P(200, "text/plain", unoTime.c_str());
   });
 
   server.begin();
