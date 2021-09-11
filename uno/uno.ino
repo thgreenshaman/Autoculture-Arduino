@@ -61,7 +61,7 @@ void setup() {
   pinMode(lightRelay, OUTPUT);
   pinMode(heatpadRelay, OUTPUT);
   pinMode(peltierRelay, OUTPUT);
-  
+
   if (! rtc.begin()) {
     Serial.println("RTC not connected or malfunctioning!!!");
     Serial.flush();
@@ -73,7 +73,6 @@ void setup() {
     Serial.println("Setting time.");
     rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
   }
-  now = rtc.now();
 
 }
 
@@ -165,28 +164,29 @@ void loop() {
     Serial.println(F("Failed to read from DHT sensor!"));
 
   }
-  //Serial.println("\n" + String(now.hour()) + ":" + String(now.minute()) + "\n");
+  now = rtc.now();
   if (int(now.hour()) >= 11 and int(now.hour()) < 17 ) {
-      lights = false;
-      digitalWrite(lightRelay, LOW);
+    lights = false;
+    digitalWrite(lightRelay, LOW);
   }
-  else if (int(now.hour()) < 11 or int(now.hour()) >= 17 ){
-      lights = true;
-      digitalWrite(lightRelay, HIGH);
+  else if (int(now.hour()) < 11 or int(now.hour()) >= 17 ) {
+    lights = true;
+    digitalWrite(lightRelay, HIGH);
   }
 
   safetyCheck();
   tempCheck();
-  if (String(now.minute()).length() == 2){
+  if (String(now.minute()).length() == 2) {
     curMin = String(now.minute());
-  } else if(String(now.minute()).length() == 1){
+  } else if (String(now.minute()).length() == 1) {
     curMin = "0" + String(now.minute());
   }
-  if (String(now.hour()).length() == 2){
+  if (String(now.hour()).length() == 2) {
     curHour = String(now.hour());
-  } else if(String(now.hour()).length() ==1){
+  } else if (String(now.hour()).length() == 1) {
     curHour = "0" + String(now.hour());
   }
+
   Serial.print(String(digitalRead(lightRelay))
                + ":" + String(digitalRead(fanRelay))
                + ":" + String(digitalRead(heatpadRelay))
