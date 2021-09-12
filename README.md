@@ -6,7 +6,10 @@ Autogrow for arduino is a basic grow environment controller that is designed for
 The Autogrow-Arduino is designed to control lighting, fans, heatpad and peltier unit with basic settings in-code. All settings must be adjusted using the in-code variables before flashing to the boards.
  
 Most variables are self explanitory although I will put up some better instructions in the near future.
-TODO::The timer is set to turn lights off at 1100 hours and turn on again at 1700 hours.
+
+Autogrow Arduino now has a command line client! Place it in a $PATH on your system (I used $HOME/.local/bin/) and make sure its executable.
+You can show the current stats with autogrow and have a dynamic display using the -d flag. mDNS seems to be rather slow running on arduino but you can specify the
+ip of the device with the -p flag.
  
  
 # Parts I used:
@@ -55,6 +58,7 @@ Thats the hard stuff done!!
     <td>Pin 9</td>
    </tr>
  </table>
+ * cp .local folder into $HOME directory and run chmod +x $HOME/.local/bin/autogrow to make sure it is executible.
  
  You should be done!
  
