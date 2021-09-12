@@ -1,5 +1,13 @@
 #!/bin/bash
 
+trap ctrl_c INT
+
+function ctrl_c() {
+        tput cnorm
+        exit;
+}
+
+
 URL='http://autogrow.local'
 Vars()
 {
@@ -12,6 +20,7 @@ Vars()
     TIME=$(curl -s "$URL/unotime")
 }
 
+VERSION='1.0b1'
 NC='\033[0m'
 GREEN='\033[0;32m'
 RED='\033[0;31m'
@@ -21,15 +30,16 @@ OFF='OFF'
 Help()
 {
    echo "  /---------------------------------------\\"
-   echo -e "  |\t   ${GREEN}->AUTOGROW Cli:Help${NC}\t\t  |"
+   echo -e "  |\t ${GREEN}->AUTOGROW Cli ${VERSION} :Help${NC}\t  |"
    echo "  \\---------------------------------------/"
    echo
    echo -e "The Autogrow Cli program is designed for retrieving"
    echo -e "data from an Autogrow-Arduino v0.01 unit attached"
    echo -e "to the local network. Autogrow-Arduino should be"
-   echo -e "available on url autogrow.local although specifying"
-   echo -e "the IP address will make the script run faster (by"
-   echo -e "a LOT!)"
+   echo -e "available on url http://autogrow.local although"
+   echo -e "specifying the IP address will make the script run"
+   echo -e "faster (By a LOT!)"
+   echo
    echo -e "\tSyntax: autogrow [-p <ip address> -option]"
    echo
    echo -e "\toptions:"
@@ -59,7 +69,7 @@ Ag()
 {
     echo
     echo -e " /--------------------------------------\\"
-    echo -e " |         ${GREEN}->AUTOGROW Arduino Cli${NC}       |"
+    echo -e " |    ${GREEN}->AUTOGROW Arduino Cli ${VERSION} ${NC}     |"
     echo -e " |--------------------------------------|"
     echo -e " |\t\t  $TIME\t\t\t|"
     echo -e " |--------------------------------------|"
@@ -91,13 +101,25 @@ Cooling()
 
 Dyn()
 {
+tput civis
 while true; do
+
   Vars
   out="$(Ag)"
   clear
   echo "$out"
-  sleep 1
+  echo -e "\tPress q or Q to quit."
+  read -t 0.25 -N 1 input
+  if [[ $input = 'q' ]] || [[ $input = 'Q' ]]; then
+      echo
+      tput cnorm
+      exit;
+  fi
+  sleep .2
 done
+tput cnorm
+
+exit;
 }
 
 while getopts 'hTHALFCWalfcwdp:' option; do
@@ -133,4 +155,6 @@ while getopts 'hTHALFCWalfcwdp:' option; do
    esac
 done
 
+Vars
 Ag
+
