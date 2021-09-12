@@ -1,22 +1,16 @@
 #!/bin/bash
 
 URL='http://autogrow.local'
-
-while getopts "p:" option; do
-  case $option in
-      p) URL=${OPTARG}
-      ;;
-  esac
-done
-
-TEMP=$(curl -s "$URL/temp")
-HUM=$(curl -s "$URL/hum")
-LS=$(curl -s "$URL/lightstate")
-FS=$(curl -s "$URL/fanstate")
-HS=$(curl -s "$URL/heatpadstate")
-PS=$(curl -s "$URL/peltierstate")
-TIME=$(curl -s "$URL/unotime")
-
+Vars()
+{
+    TEMP=$(curl -s "$URL/temp")
+    HUM=$(curl -s "$URL/hum")
+    LS=$(curl -s "$URL/lightstate")
+    FS=$(curl -s "$URL/fanstate")
+    HS=$(curl -s "$URL/heatpadstate")
+    PS=$(curl -s "$URL/peltierstate")
+    TIME=$(curl -s "$URL/unotime")
+}
 
 NC='\033[0m'
 GREEN='\033[0;32m'
@@ -31,7 +25,7 @@ Help()
    echo "  \\---------------------------------------/"
    echo
    echo -e "The Autogrow Cli program is designed for retrieving"
-   echo -e "data from an Autogrow-Arduino v0.01 unit attatched"
+   echo -e "data from an Autogrow-Arduino v0.01 unit attached"
    echo -e "to the local network. Autogrow-Arduino should be"
    echo -e "available on url autogrow.local although specifying"
    echo -e "the IP address will make the script run faster (by"
@@ -48,6 +42,7 @@ Help()
    echo -e "    f     Print fan state."
    echo -e "    w     Print heating state."
    echo -e "    c     Print cooling state."
+   echo -e "    d     Live update display."
    echo
 }
 
@@ -64,7 +59,7 @@ Ag()
 {
     echo
     echo -e " /--------------------------------------\\"
-    echo -e " |          ${GREEN}->AUTOGROW Arduino Cli${NC}      |"
+    echo -e " |         ${GREEN}->AUTOGROW Arduino Cli${NC}       |"
     echo -e " |--------------------------------------|"
     echo -e " |\t\t  $TIME\t\t\t|"
     echo -e " |--------------------------------------|"
@@ -93,30 +88,46 @@ Cooling()
 {
 	echo -e "Lights:\t\t$(Color $PS)"
 }
-while getopts 'hTHALFCWalfcw' option; do
+
+Dyn()
+{
+while true; do
+  Vars
+  out="$(Ag)"
+  clear
+  echo "$out"
+  sleep 1
+done
+}
+
+while getopts 'hTHALFCWalfcwdp:' option; do
    case $option in
+      p) URL=${OPTARG}
+      ;;
       h) Help
          exit;;
-      T) echo "$TEMP°c"
+      T) Vars; echo -e "Tempterature:\t$TEMP°c"
          exit;;
-      H) echo "$HUM%"
+      H) Vars; echo -e "Humidity:\t$HUM%"
          exit;;
-      L) Lights
+      L) Vars; Lights
          exit;;
-      l) Lights
+      l) Vars; Lights
          exit;;
-      F) Fan
+      F) Vars; Fan
          exit;;
-      f) Fan
+      f) Vars; Fan
          exit;;
-      W) Heating
+      W) Vars; Heating
          exit;;
-      w) Heating
+      w) Vars; Heating
          exit;;
-      C) Cooling
+      C) Vars; Cooling
          exit;;
-      c) Cooling
+      c) Vars; Cooling
          exit;;
+      d) Dyn
+         ;;
      \?) echo "Error: Invalid option"
          exit 1;;
    esac
