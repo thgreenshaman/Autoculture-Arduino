@@ -8,7 +8,7 @@ function ctrl_c() {
 }
 
 
-URL='http://autogrow.local'
+URL='http://autoculture.local'
 Vars()
 {
     TEMP=$(curl -s "$URL/temp")
@@ -30,22 +30,22 @@ OFF='OFF'
 Help()
 {
    echo "  /---------------------------------------\\"
-   echo -e "  |\t ${GREEN}->AUTOGROW Cli ${VERSION} :Help${NC}\t  |"
+   echo -e "  |\t ${GREEN}->autoculture Cli ${VERSION} :Help${NC}\t  |"
    echo "  \\---------------------------------------/"
    echo
-   echo -e "The Autogrow Cli program is designed for retrieving"
-   echo -e "data from an Autogrow-Arduino v0.01 unit attached"
-   echo -e "to the local network. Autogrow-Arduino should be"
-   echo -e "available on url http://autogrow.local although"
+   echo -e "The autoculture Cli program is designed for retrieving"
+   echo -e "data from an autoculture-Arduino v0.01 unit attached"
+   echo -e "to the local network. autoculture-Arduino should be"
+   echo -e "available on url http://autoculture.local although"
    echo -e "specifying the IP address will make the script run"
    echo -e "faster (By a LOT!)"
    echo
-   echo -e "\tSyntax: autogrow [-p <ip address> -option]"
+   echo -e "\tSyntax: autoculture [-p <ip address> -option]"
    echo
    echo -e "\toptions:"
    echo
    echo -e "    h     Print this help screen."
-   echo -e "    p     IP address of AUTOGROW arduino unit."
+   echo -e "    p     IP address of autoculture arduino unit."
    echo -e "    T     Print the current temperature."
    echo -e "    H     Print the current humidity."
    echo -e "    l     Print light state."
@@ -69,7 +69,7 @@ Ag()
 {
     echo
     echo -e " /--------------------------------------\\"
-    echo -e " |    ${GREEN}->AUTOGROW Arduino Cli ${VERSION} ${NC}     |"
+    echo -e " |    ${GREEN}->autoculture Arduino Cli ${VERSION} ${NC}     |"
     echo -e " |--------------------------------------|"
     echo -e " |\t\t  $TIME\t\t\t|"
     echo -e " |--------------------------------------|"
@@ -157,4 +157,3 @@ done
 
 Vars
 Ag
-
