@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 //                                                                           //
-//    AutoGrow-Arduino v0.01                                                 //
+//    Autoculture-Arduino v0.01                                                 //
 //                                                                           //
 //    Copyright (C) 2021 Damian Mair(thgreenshaman) ->/dmTech                //
 //                                                                           //

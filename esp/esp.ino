@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 //                                                                           //
-//    AutoGrow-Arduino v0.01                                                     //
+//    Autoculture-Arduino v0.01                                                     //
 //                                                                           //
 //    Copyright (C) 2021 Damian Mair(thgreenshaman) ->/dmTech                //
 //                                                                           //
@@ -67,19 +67,19 @@ void readUno() {
   Serial.println(unoData);
   Serial.println(String(unoData.length()));
   if (unoData.length() == 24){
-    
+
     if (unoData.substring(0,1) == "0"){
       lightState = "OFF";
     } else if (unoData.substring(0,1) == "1"){
       lightState = "ON";
     }
-    
+
     if (unoData.substring(2,3) == "0"){
       fanState = "OFF";
     } else if (unoData.substring(2,3) == "1"){
       fanState = "ON";
     }
-    
+
     if (unoData.substring(4,5) == "0"){
       heatpadState = "OFF";
     } else if (unoData.substring(4,5) == "1"){
@@ -94,7 +94,7 @@ void readUno() {
     hum = unoData.substring(14,19);
     unoTime = unoData.substring(19);
   }
-    
+
     Serial.print("\nTemp\t");
     Serial.println(temp);
     Serial.print("Hum\t");
@@ -112,7 +112,7 @@ void readUno() {
 
     delay(3000);
 
- 
+
 }
 
 void setup() {
@@ -175,7 +175,7 @@ void setup() {
 
   server.begin();
 
-  if (!MDNS.begin("autogrow")) {             // Start the mDNS responder for esp8266.local
+  if (!MDNS.begin("autoculture")) {             // Start the mDNS responder for esp8266.local
     Serial.println("Error setting up MDNS responder!");
   }
 
