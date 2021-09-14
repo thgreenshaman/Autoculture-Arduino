@@ -64,8 +64,6 @@ String processor(const String& var) {
 
 void readUno() {
   unoData = Serial.readStringUntil(';');
-  Serial.println(unoData);
-  Serial.println(String(unoData.length()));
   if (unoData.length() == 24){
 
     if (unoData.substring(0,1) == "0"){
@@ -95,25 +93,14 @@ void readUno() {
     unoTime = unoData.substring(19);
   }
 
-    Serial.print("\nTemp\t");
-    Serial.println(temp);
-    Serial.print("Hum\t");
-    Serial.println(hum);
-    Serial.print("Lights\t");
-    Serial.println(lightState);
-    Serial.print("Fan\t");
-    Serial.println(fanState);
-    Serial.print("Heatpad\t");
-    Serial.println(heatpadState);
-    Serial.print("Peltier\t");
-    Serial.println(peltierState);
-    Serial.print("Time\t");
-    Serial.println(unoTime);
 
     delay(3000);
 
 
 }
+
+
+
 
 void setup() {
   Serial.begin(57600);
@@ -136,15 +123,7 @@ void setup() {
   server.on("/", HTTP_GET, [](AsyncWebServerRequest * request) {
     request->send(SPIFFS, "/index.html", String(), false, processor);
   });
-
-  server.on("/style.css", HTTP_GET, [](AsyncWebServerRequest * request) {
-    request->send(SPIFFS, "/style.css", "text/css");
-  });
-
-  server.on("/logo.png", HTTP_GET, [](AsyncWebServerRequest * request) {
-    request->send(SPIFFS, "/logo.png", "image/png");
-  });
-
+  
   server.on("/temp", HTTP_GET, [](AsyncWebServerRequest * request) {
     request->send_P(200, "text/plain", temp.c_str());
   });
@@ -153,19 +132,19 @@ void setup() {
     request->send_P(200, "text/plain", hum.c_str());
   });
 
-  server.on("/fanstate", HTTP_GET, [](AsyncWebServerRequest * request) {
+  server.on("/fs", HTTP_GET, [](AsyncWebServerRequest * request) {
     request->send_P(200, "text/plain", fanState.c_str());
   });
 
-  server.on("/heatpadstate", HTTP_GET, [](AsyncWebServerRequest * request) {
+  server.on("/hs", HTTP_GET, [](AsyncWebServerRequest * request) {
     request->send_P(200, "text/plain", heatpadState.c_str());
   });
 
-  server.on("/lightstate", HTTP_GET, [](AsyncWebServerRequest * request) {
+  server.on("/ls", HTTP_GET, [](AsyncWebServerRequest * request) {
     request->send_P(200, "text/plain", lightState.c_str());
   });
 
-  server.on("/peltierstate", HTTP_GET, [](AsyncWebServerRequest * request) {
+  server.on("/ps", HTTP_GET, [](AsyncWebServerRequest * request) {
     request->send_P(200, "text/plain", peltierState.c_str());
   });
 
@@ -181,6 +160,7 @@ void setup() {
 
 
 }
+
 
 void loop() {
   MDNS.update();

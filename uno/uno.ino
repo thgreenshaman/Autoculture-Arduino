@@ -88,8 +88,6 @@ void safetyCheck() {
     //Serial.println("Fan ON");
     digitalWrite(peltierRelay, HIGH);
     //Serial.println("Fan ON");
-    Serial.println("TEMPERATURE TOO HIGH");
-    Serial.println("EMERGENCY COOLING INITIATED");
   }
   return;
 }
