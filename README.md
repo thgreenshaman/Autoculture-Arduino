@@ -61,7 +61,7 @@ Thats the hard stuff done!!
  # Screenshot
  </div>
  <div align="center">
- <img src="screenshot.png" alt="Screenshot">
+ <img src="/screenshot.png" alt="Screenshot">
 
  </div>
 </body>
