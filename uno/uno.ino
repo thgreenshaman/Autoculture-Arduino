@@ -34,10 +34,10 @@
 #define heatpadRelay 8
 #define peltierRelay 9
 
-int tempLowOn = 18;
+int tempLowOn = 20;
 int tempHighOn = 28;
-int tempLowOff = 12;
-int tempHighOff = 22;
+int tempLowOff = 14;
+int tempHighOff = 24;
 int shutDown = 40;
 bool lights;
 float t;

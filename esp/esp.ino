@@ -32,13 +32,16 @@
 AsyncWebServer server(80);
 
 //Set your WiFi crendentials in config.h file.
-const char* ssid = WIFI_SSID;
-const char* password = WIFI_PASSWORD;
+const char* wifi_ssid = WIFI_SSID;
+const char* wifi_password = WIFI_PASSWORD;
 
 const char* http_user = HTTP_USER;
 const char* http_pass = HTTP_PASS;
 
 const char* ota_pass = OTA_PASS;
+
+const char* ap_ssid = AP_SSID;
+const char* ap_password = AP_PASSWORD;
 
 String temp;
 String hum;
@@ -79,7 +82,7 @@ const char logout_html[] PROGMEM = R"rawliteral(
     </center>
     </div>
   <div id='loggedout'>
-  <p>Logged out or <a href="/">return to homepage</a>.</p>
+  <p><a href="http://log:out@autoculture.local">Click here</a> to log out or <a href="/">return to homepage</a>.</p>
   <p><strong>Note:</strong> close all web browser tabs to complete the logout process.</p>
   </div>
   <div id='footer'>
@@ -157,11 +160,15 @@ void setup() {
     return;
   }
 
-  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+  //Comment out the block below to connect to a WiFi network
+  WiFi.begin(wifi_ssid, wifi_password);
   while (WiFi.status() != WL_CONNECTED) {
     delay(1000);
     Serial.println("Connecting to WiFi...");
   }
+
+  
+  //WiFi.softAP(ap_ssid, ap_password);
 
   Serial.print("\nConnected on :");
   Serial.println(WiFi.localIP());
