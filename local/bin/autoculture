@@ -30,12 +30,12 @@ OFF='OFF'
 Help()
 {
    echo "  /---------------------------------------\\"
-   echo -e "  |\t${GREEN}->autoculture Cli ${VERSION} :Help${NC}\t  |"
+   echo -e "  |\t${GREEN}->Autoculture Cli ${VERSION} :Help${NC}\t  |"
    echo "  \\---------------------------------------/"
    echo
-   echo -e "The autoculture Cli program is designed for retrieving"
-   echo -e "data from an autoculture-Arduino v0.01 unit attached"
-   echo -e "to the local network. autoculture-Arduino should be"
+   echo -e "The Autoculture Cli client is designed for retrieving"
+   echo -e "data from an Autoculture Arduino v0.01 unit attached"
+   echo -e "to the local network. Autoculture Arduino should be"
    echo -e "available on url http://autoculture.local although"
    echo -e "specifying the IP address will make the script run"
    echo -e "faster (By a LOT!)"
@@ -45,7 +45,7 @@ Help()
    echo -e "\toptions:"
    echo
    echo -e "    h     Print this help screen."
-   echo -e "    p     IP address of autoculture arduino unit."
+   echo -e "    p     IP address of Autoculture arduino unit."
    echo -e "    T     Print the current temperature."
    echo -e "    H     Print the current humidity."
    echo -e "    l     Print light state."
@@ -69,7 +69,7 @@ Ag()
 {
     echo
     echo -e " /--------------------------------------\\"
-    echo -e " |   ${GREEN}->autoculture Arduino Cli ${VERSION} ${NC}   |"
+    echo -e " |   ${GREEN}->Autoculture Arduino Cli ${VERSION} ${NC}   |"
     echo -e " |--------------------------------------|"
     echo -e " |\t\t  $TIME\t\t\t|"
     echo -e " |--------------------------------------|"
@@ -84,7 +84,7 @@ Ag()
 
 Fan()
 {
-    echo -e "Lights:\t\t$(Color $FS)"
+    echo -e "Fan:\t\t$(Color $FS)"
 }
 Lights()
 {
@@ -96,7 +96,7 @@ Heating()
 }
 Cooling()
 {
-	echo -e "Lights:\t\t$(Color $PS)"
+	echo -e "Cooling:\t\t$(Color $PS)"
 }
 
 Dyn()
