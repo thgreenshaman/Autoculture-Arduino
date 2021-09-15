@@ -144,7 +144,7 @@ void tempCheck() {
       digitalWrite(heatpadRelay, LOW);
       //Serial.println("Heatpad OFF");
 
-    } else if (t > tempLowOff + 2 && t < tempHighOff - 1) {
+    } else if (t > tempLowOff + 2 && t < tempHighOff - 2) {
       digitalWrite(fanRelay, HIGH);
       //Serial.println("Fan ON");
       digitalWrite(peltierRelay, LOW);

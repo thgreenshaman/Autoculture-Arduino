@@ -26,6 +26,22 @@
           text-align:center;
           color:#003d00;
         }
+        button {
+          padding:10px;
+          width:10em;
+          background-color: #629749;
+          border-style: solid;
+          border-radius: 1em;
+          border-color: #003d00;
+          color:#003d00;
+        }
+
+        button:hover {
+          background-color: #003d00;
+          border-color: #629749;
+          width:11em;
+          color:#629749;
+        }
         #titleBar {
           height: 20%;
           width: 100%;
@@ -82,12 +98,23 @@
         <th style="color:#629749" colspan="2">_______________________</th>
         <td style="color:#629749" colspan="2">_______________________</td>
       </tr>
+      <tr>
+        <th colspan=4><button onclick="logoutButton()">Logout</button></th>
+      </tr>
     </table>
     </div>
     <div id='footer'>
       <h6>Autoculture is distributed under GPLv3 by <a href="http://www.github.com/thgreenshaman">thgreenshaman</a> @ <a href='https://www.dm-tech.com'>-\>dm-tech</a><h6>
   </div>
   <script>
+
+  function logoutButton() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.open("GET", "/logout", true);
+  xhttp.send();
+  setTimeout(function(){ window.open("/logged_out","_self"); }, 1000);
+}
+
   function checkState(a){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -119,7 +146,7 @@
     var id = document.getElementById('temp').innerHTML;
     if (parseInt(id) > 28){
       document.getElementById('temp').style.color = '#FF0000';
-    }else if(parseInt(id) < 14){
+    }else if(parseInt(id) < 16){
       document.getElementById('temp').style.color = '#0000FF';
     }else{
       document.getElementById('temp').style.color = '#003d00';
@@ -155,6 +182,7 @@
     checkState('hs');
     checkState('ps');
   }, 5000);
+
   </script>
   </body>
 </html>
