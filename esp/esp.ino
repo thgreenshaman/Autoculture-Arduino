@@ -82,7 +82,7 @@ const char logout_html[] PROGMEM = R"rawliteral(
     </center>
     </div>
   <div id='loggedout'>
-  <p><a href="http://log:out@autoculture.local">Click here</a> to log out or <a href="/">return to homepage</a>.</p>
+  <p><a href="http://log:out@%IP%">Click here</a> to log out or <a href="/">return to homepage</a>.</p>
   <p><strong>Note:</strong> close all web browser tabs to complete the logout process.</p>
   </div>
   <div id='footer'>
@@ -109,6 +109,12 @@ String processor(const String& var) {
     return fanState;
   } else if (var == "UNOTIME") {
     return unoTime;
+  } else if (var == "IP") {
+    IPAddress ipAddress = WiFi.localIP();
+    return String(String(ipAddress[0]) + String(".") +\
+  String(ipAddress[1]) + String(".") +\
+  String(ipAddress[2]) + String(".") +\
+  String(ipAddress[3]));
   }
 }
 
