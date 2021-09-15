@@ -112,7 +112,7 @@
   var xhttp = new XMLHttpRequest();
   xhttp.open("GET", "/logout", true);
   xhttp.send();
-  setTimeout(function(){ window.open("/logged_out","_self"); }, 1000);
+  setTimeout(function(){ window.open("/loggedout","_self"); }, 1000);
 }
 
   function checkState(a){
@@ -177,12 +177,14 @@
     xhttp.open("GET", "/unotime", true);
     xhttp.send();
     //--------------------------------
+  }, 2000);
+
+  setInterval(function() {
     checkState('ls');
     checkState('fs');
     checkState('hs');
     checkState('ps');
-  }, 5000);
-
+  }, 500);
   </script>
   </body>
 </html>

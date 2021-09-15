@@ -13,10 +13,10 @@ Vars()
 {
     TEMP=$(curl -s "$URL/temp")
     HUM=$(curl -s "$URL/hum")
-    LS=$(curl -s "$URL/lightstate")
-    FS=$(curl -s "$URL/fanstate")
-    HS=$(curl -s "$URL/heatpadstate")
-    PS=$(curl -s "$URL/peltierstate")
+    LS=$(curl -s "$URL/ls")
+    FS=$(curl -s "$URL/fs")
+    HS=$(curl -s "$URL/hs")
+    PS=$(curl -s "$URL/ps")
     TIME=$(curl -s "$URL/unotime")
 }
 
@@ -30,7 +30,7 @@ OFF='OFF'
 Help()
 {
    echo "  /---------------------------------------\\"
-   echo -e "  |\t ${GREEN}->autoculture Cli ${VERSION} :Help${NC}\t  |"
+   echo -e "  |\t${GREEN}->autoculture Cli ${VERSION} :Help${NC}\t  |"
    echo "  \\---------------------------------------/"
    echo
    echo -e "The autoculture Cli program is designed for retrieving"
@@ -69,7 +69,7 @@ Ag()
 {
     echo
     echo -e " /--------------------------------------\\"
-    echo -e " |    ${GREEN}->autoculture Arduino Cli ${VERSION} ${NC}     |"
+    echo -e " |   ${GREEN}->autoculture Arduino Cli ${VERSION} ${NC}   |"
     echo -e " |--------------------------------------|"
     echo -e " |\t\t  $TIME\t\t\t|"
     echo -e " |--------------------------------------|"
