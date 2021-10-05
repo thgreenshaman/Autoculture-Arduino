@@ -1,12 +1,13 @@
 
 <div align="center"><img src="/logo.png" alt="Autoculture logo"></div>
 <div>
+Autoculture is a work in progress and is not yet complete but is very much in a functional BETA state.
+ 
 Autoculture for arduino is a basic grow environment controller that is designed for use with <a href="https://www.jaycar.co.nz">JayCars</a> XC4411 Arduino Uno w/ Wifi (Intergrated ESP8266). The .ino files can be flashed to separate Uno and ESP boards then connect them via serial. There is a sample of serial communication between boards at this <a href="https://www.hackster.io/RoboticaDIY/send-data-from-arduino-to-nodemcu-and-nodemcu-to-arduino-17d47a">link</a>
 
 The Autoculture-Arduino is designed to control lighting, fans, heatpad and peltier unit with basic settings in-code. All settings must be adjusted using the in-code variables before flashing to the boards.
 
 Most variables are self explanitory although I will put up some better instructions in the near future.
-TODO::The timer is set to turn lights off at 1100 hours and turn on again at 1700 hours.
 
 
 # Parts I used:
